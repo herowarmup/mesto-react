@@ -1,21 +1,18 @@
-export function PopupWithForm(props) {
+export function PopupWithForm({ name, isOpen, onClose, title, children, submitText }) {
   return (
-    <div
-      className={`popup popup_${props.name} ${props.isOpen ? 'popup_opened' : ''}`}
-      onClick={props.onClose}
-    >
+    <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onClose}>
       <div className='popup__wrap' onClick={(e) => e.stopPropagation()}>
         <button
           className='popup__close-btn'
           type='button'
           aria-label='Закрыть'
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
-        <h2 className='popup__title'>{props.title}</h2>
-        <form className={`popup__form popup__form-${props.name}`} name={props.name} noValidate>
-          {props.children}
+        <h2 className='popup__title'>{title}</h2>
+        <form className={`popup__form popup__form-${name}`} name={name} noValidate>
+          {children}
           <button className='popup__submit-btn' type='submit'>
-            {props.submitText}
+            {submitText || 'Сохранить'}
           </button>
         </form>
       </div>
