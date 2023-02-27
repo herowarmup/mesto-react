@@ -1,31 +1,38 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../utils/Api';
 import { Card } from './Card';
 
-export function Main(props) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+export function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
-    api.getInitialCards().then((data) => {
-      setCards(data);
-    });
-  }, []);
-
-  React.useEffect(() => {
-    api.getUserInfo().then((data) => {
-      setUserName(data.name);
-      setUserAvatar(data.avatar);
-      setUserDescription(data.about);
-    });
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then((data) => {
+        setCards(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    api
+      .getUserInfo()
+      .then((data) => {
+        setUserName(data.name);
+        setUserAvatar(data.avatar);
+        setUserDescription(data.about);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <main className='content'>
       <section className='profile'>
-        <div className='profile__avatar-container' onClick={props.onEditAvatar}>
+        <div className='profile__avatar-container' onClick={onEditAvatar}>
           <img src={userAvatar} alt='Аватар профиля' className='profile__avatar' />
         </div>
         <div className='profile__info'>
@@ -34,7 +41,7 @@ export function Main(props) {
             className='profile__edit-button'
             type='button'
             aria-label='Редактировать'
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
           ></button>
           <p className='profile__about'>{userDescription}</p>
         </div>
@@ -42,7 +49,7 @@ export function Main(props) {
           className='profile__add-button'
           type='button'
           aria-label='Добавить'
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         ></button>
       </section>
       <section className='cards'>
@@ -50,7 +57,7 @@ export function Main(props) {
           {cards.map((card) => {
             return (
               <li className='card' key={card._id}>
-                <Card card={card} onCardClick={props.onCardClick} />
+                <Card card={card} onCardClick={onCardClick} />
               </li>
             );
           })}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import logo from '../images/logo.svg';
 
 export function Header() {

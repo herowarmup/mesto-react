@@ -1,18 +1,15 @@
-export function ImagePopup(props) {
+export function ImagePopup({ onClose, card, isOpen }) {
   return (
-    <div
-      className={`popup popup_img ${props.isOpen ? 'popup_opened' : ''}`}
-      onClick={props.onClose}
-    >
+    <div className={`popup popup_img ${isOpen ? 'popup_opened' : ''}`} onClick={onClose}>
       <div className='popup__image-wrap' onClick={(e) => e.stopPropagation()}>
         <button
           className='popup__close-btn'
           type='button'
           aria-label='Закрыть'
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
-        <img className='popup__image' src={props.card.link} alt={props.card.name} />
-        <p className='popup__text'>{props.card.name}</p>
+        <img className='popup__image' src={card.link} alt={card.name} />
+        <p className='popup__text'>{card.name}</p>
       </div>
     </div>
   );
