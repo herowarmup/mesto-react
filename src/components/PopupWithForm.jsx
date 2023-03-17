@@ -1,4 +1,4 @@
-export function PopupWithForm({ name, isOpen, onClose, title, children, submitText }) {
+export function PopupWithForm({ name, isOpen, onClose, title, children, submitText, onSubmit }) {
   return (
     <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onClose}>
       <div className='popup__wrap' onClick={(e) => e.stopPropagation()}>
@@ -9,7 +9,12 @@ export function PopupWithForm({ name, isOpen, onClose, title, children, submitTe
           onClick={onClose}
         ></button>
         <h2 className='popup__title'>{title}</h2>
-        <form className={`popup__form popup__form-${name}`} name={name} noValidate>
+        <form
+          className={`popup__form popup__form-${name}`}
+          name={name}
+          noValidate
+          onSubmit={onSubmit}
+        >
           {children}
           <button className='popup__submit-btn' type='submit'>
             {submitText || 'Сохранить'}
