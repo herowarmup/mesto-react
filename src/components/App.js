@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import api from '../utils/api';
+import api from '../utils/Api';
 
 import { Header } from './Header';
 import { Main } from './Main';
