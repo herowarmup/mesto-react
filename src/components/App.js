@@ -98,10 +98,13 @@ function App() {
   }
 
   function handleAddPlaceSubmit(userData) {
-    api.createCard(userData).then((newUserData) => {
-      setCards([newUserData, ...cards]);
-      closeAllPopups();
-    });
+    api
+      .createCard(userData)
+      .then((newUserData) => {
+        setCards([newUserData, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

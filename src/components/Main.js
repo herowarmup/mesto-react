@@ -26,7 +26,7 @@ export function Main({
             type='button'
             aria-label='Редактировать'
             onClick={onEditProfile}
-          ></button>
+          />
           <p className='profile__about'>{currentUser.about}</p>
         </div>
         <button
@@ -34,7 +34,7 @@ export function Main({
           type='button'
           aria-label='Добавить'
           onClick={onAddPlace}
-        ></button>
+        />
       </section>
       <section className='cards'>
         <ul className='cards__items'>

@@ -39,6 +39,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         minLength='2'
         maxLength='30'
         required
+        value={cardName || ''}
         onChange={handleSetName}
       />
       <span id='popup-name_place-error' className='error'></span>
@@ -49,6 +50,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         placeholder='Ссылка на картинку'
         autoComplete='off'
         required
+        value={cardLink || ''}
         onChange={handleSetLink}
       />
       <span id='popup-about_place-error' className='error'></span>
