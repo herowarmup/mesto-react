@@ -21,9 +21,14 @@ function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo().then((user) => {
-      setCurrentUser(user);
-    });
+    api
+      .getUserInfo()
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     api
       .getInitialCards()
       .then((data) => {
